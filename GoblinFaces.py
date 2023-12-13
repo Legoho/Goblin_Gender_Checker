@@ -3,7 +3,6 @@
 
 # In[1]:
 
-
 import os
 import pandas as pd
 import tensorflow as tf
@@ -31,18 +30,9 @@ from  matplotlib.colors import LinearSegmentedColormap
 
 
 notebookdir=os.getcwd()
-<<<<<<< Updated upstream
-folder_path=r"archive\images\gob64"
-file_path = 'archive\artbreederGoblin.csv'
-=======
-image_folder = "C:\\Users\\Szirm\\miniconda3\\Scripts\\Homework\\Images"
-folder_path=r"C:\Users\Szirm\Downloads\archive\images\gob64"
-file_path = 'artbreederGoblin.csv'
 
-
-# In[3]:
-
->>>>>>> Stashed changes
+folder_path=r"/workspaces/Goblin_Gender_Checker/archive/images/gob64"
+file_path = '/workspaces/Goblin_Gender_Checker/archive/artbreederGoblin.csv'
 
 file_names = os.listdir(folder_path)
 print(f"Number of filenames: {len(file_names)}")
@@ -232,13 +222,3 @@ plt.xlabel('Predicted Label')
 plt.ylabel('True Label')
 plt.title('Confusion Matrix')
 plt.show()
-<<<<<<< Updated upstream
-=======
-
-
-# In[ ]:
-
-
-
-
->>>>>>> Stashed changes
