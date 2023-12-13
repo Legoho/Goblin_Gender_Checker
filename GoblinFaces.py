@@ -22,9 +22,8 @@ from  matplotlib.colors import LinearSegmentedColormap
 
 
 notebookdir=os.getcwd()
-image_folder = "C:\\Users\\Szirm\\miniconda3\\Scripts\\Homework\\Images"
-folder_path=r"C:\Users\Szirm\Downloads\archive\images\gob64"
-file_path = 'C:\Users\Szirm\Downloads\archive\artbreederGoblin.csv'
+folder_path=r"archive\images\gob64"
+file_path = 'archive\artbreederGoblin.csv'
 
 file_names = os.listdir(folder_path)
 print(f"Number of filenames: {len(file_names)}")
