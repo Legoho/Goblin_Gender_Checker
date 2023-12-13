@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
 import os
 import pandas as pd
 import tensorflow as tf
@@ -21,9 +27,22 @@ import matplotlib.pyplot as plt
 from  matplotlib.colors import LinearSegmentedColormap
 
 
+# In[2]:
+
+
 notebookdir=os.getcwd()
+<<<<<<< Updated upstream
 folder_path=r"archive\images\gob64"
 file_path = 'archive\artbreederGoblin.csv'
+=======
+image_folder = "C:\\Users\\Szirm\\miniconda3\\Scripts\\Homework\\Images"
+folder_path=r"C:\Users\Szirm\Downloads\archive\images\gob64"
+file_path = 'artbreederGoblin.csv'
+
+
+# In[3]:
+
+>>>>>>> Stashed changes
 
 file_names = os.listdir(folder_path)
 print(f"Number of filenames: {len(file_names)}")
@@ -46,6 +65,9 @@ print(f"Number of Labels: {len(labels)}")
 labels = to_categorical(labels-1, num_classes=5)
 
 
+# In[4]:
+
+
 # Shuffle the data
 ids, labels = shuffle(ids, labels, random_state=42)
 
@@ -53,6 +75,11 @@ ids, labels = shuffle(ids, labels, random_state=42)
 train_files, test_files, train_labels, test_labels = train_test_split(
     ids, labels, test_size=0.2, random_state=42
 )
+
+
+# In[5]:
+
+
 # Data preprocessing function
 def preprocess_image(file_path, label):
     # Load and preprocess the image
@@ -62,6 +89,10 @@ def preprocess_image(file_path, label):
     img = tf.cast(img, tf.float32) / 255.0  # Normalize pixel values to [0, 1]
     return img, label
 
+
+# In[6]:
+
+
 # Create TensorFlow datasets
 train_dataset = tf.data.Dataset.from_tensor_slices((train_files, train_labels))
 train_dataset = train_dataset.map(preprocess_image)
@@ -70,6 +101,9 @@ train_dataset = train_dataset.shuffle(buffer_size=10000).batch(batch_size=32)
 test_dataset = tf.data.Dataset.from_tensor_slices((test_files, test_labels))
 test_dataset = test_dataset.map(preprocess_image)
 test_dataset = test_dataset.batch(batch_size=32)
+
+
+# In[7]:
 
 
 # Define the model
@@ -92,8 +126,16 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 model. summary()
 
+
+# In[8]:
+
+
 # Train the model
 model.fit(train_dataset, epochs=10, validation_data=test_dataset)
+
+
+# In[9]:
+
 
 # predict probabilities for test set
 predictions_raw = model.predict(test_dataset)
@@ -104,37 +146,85 @@ predictions_raw
 print(predicted_classes)
 print(predictions_raw)
 
+
+# In[10]:
+
+
 # Evaluate the model
 test_loss, test_acc = model.evaluate(test_dataset)
 print(f'Test accuracy: {test_acc}')
 
+
+# In[11]:
+
+
 test_labels = np.argmax(test_labels+1, axis=1)
+
+
+# In[12]:
+
 
 print(test_labels)
 print(predicted_classes)
+
+
+# In[13]:
+
 
 precision = precision_score(test_labels, predicted_classes, average='weighted')
 recall = recall_score(test_labels, predicted_classes, average='weighted')
 f1 = f1_score(test_labels, predicted_classes, average='weighted')
 
+
+# In[14]:
+
+
 print(precision)
 print(recall)
 print(f1)
 
+
+# In[15]:
+
+
 kappa = cohen_kappa_score(test_labels, predicted_classes)
 print(f'Cohen\'s Kappa: {kappa}')
+
+
+# In[16]:
+
 
 cm = confusion_matrix(test_labels, predicted_classes)
 print(f'Confusion Matrix:\n{cm}')
 
+
+# In[17]:
+
+
 y_true_binarized = label_binarize(test_labels, classes=np.unique(test_labels))
 
+
+# In[18]:
+
+
 roc_auc_scores = []
+
+
+# In[19]:
+
 
 for i in range(np.max(test_labels) + 1):  # Assuming class labels start from 0
     roc_auc_scores.append(roc_auc_score(y_true_binarized[:, i], predictions_raw[:, i]))
 
+
+# In[20]:
+
+
 print(f'ROC AUC Scores for Each Class: {roc_auc_scores}')
+
+
+# In[21]:
+
 
 plt.figure(figsize=(8, 6))
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=[1, 2, 3, 4, 5], yticklabels=[1, 2, 3, 4, 5])
@@ -142,3 +232,13 @@ plt.xlabel('Predicted Label')
 plt.ylabel('True Label')
 plt.title('Confusion Matrix')
 plt.show()
+<<<<<<< Updated upstream
+=======
+
+
+# In[ ]:
+
+
+
+
+>>>>>>> Stashed changes
