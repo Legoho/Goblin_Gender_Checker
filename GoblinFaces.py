@@ -2,13 +2,25 @@
 # coding: utf-8
 
 # In[1]:
+import subprocess
+
+# Define the requirements file
+requirements_file = "requirements.txt"
+
+# Install dependencies using pip
+try:
+    subprocess.run(["pip", "install", "-r", requirements_file], check=True)
+    print("Dependencies installed successfully.")
+except subprocess.CalledProcessError as e:
+    print(f"Error installing dependencies: {e}")
 
 import os
 import pandas as pd
 import tensorflow as tf
 import numpy as np
-from tensorflow.keras import layers, models
-from tensorflow.keras.utils import to_categorical
+from tensorflow import keras
+from keras import layers, models
+from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.model_selection import train_test_split
